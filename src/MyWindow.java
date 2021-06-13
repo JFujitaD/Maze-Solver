@@ -22,7 +22,6 @@ public class MyWindow extends JFrame {
 		addInfoPanel();
 		
 		// Testing Matrix
-		
 		// Testing Matrix
 		
 		loadWindow();

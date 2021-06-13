@@ -4,11 +4,17 @@ import javax.swing.*;
 public class MyCell extends JPanel {
 	
 	private static final Color DEFAULT_BACKGROUND = Color.WHITE;
-	private static final Color VISITED_BACKGROUND = Color.GREEN;
+	private static final Color VISITED_BACKGROUND = Color.BLUE;
 	private static final Color WALL_BACKGROUND = Color.BLACK;
+	private static final Color START_BACKGROUND = Color.GREEN;
+	private static final Color END_BACKGROUND = Color.RED;
 	private static final MyMouseListener LISTENER = new MyMouseListener();
 	
-	public boolean isWall = false;
+	public CellType type = CellType.PATH;
+	
+	public enum CellType {
+		START, PATH, WALL, END
+	}
 	
 	public MyCell() {
 		
@@ -21,12 +27,22 @@ public class MyCell extends JPanel {
 	}
 	
 	public void changeToWall() {
-		isWall = true;
+		type = CellType.WALL;
 		setBackground(WALL_BACKGROUND);
 	}
 	
 	public void changeToPath() {
-		isWall = false;
+		type = CellType.PATH;
 		setBackground(DEFAULT_BACKGROUND);
+	}
+	
+	public void changeToStart() {
+		type = CellType.START;
+		setBackground(START_BACKGROUND);
+	}
+	
+	public void changeToEnd() {
+		type = CellType.END;
+		setBackground(END_BACKGROUND);
 	}
 }
