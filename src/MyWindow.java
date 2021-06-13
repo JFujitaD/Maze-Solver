@@ -12,13 +12,12 @@ public class MyWindow extends JFrame {
 	private static final Color GRID_BACKGROUND = Color.BLACK;
 	private static final Color INFO_BACKGROUND = Color.GRAY;
 	
-	private static MyCell[][] cellMatrix = new MyCell[CELLS.x][CELLS.y];	// Rows, Columns
 	private static Point startCell = new Point(0, 2);
 	private static Point endCell = new Point(10, 19);
 	
 	public MyWindow() {
 		
-		applyGrid();
+		loadGrid();
 		addInfoPanel();
 		
 		// Testing Matrix
@@ -39,7 +38,7 @@ public class MyWindow extends JFrame {
 		add(infoContainer, BorderLayout.NORTH);
 	}
 	
-	private void applyGrid() {
+	private void loadGrid() {
 		
 		GridLayout gridLayout = new GridLayout(CELLS.x, CELLS.y, GAPS.x, GAPS.y);
 		
@@ -52,6 +51,8 @@ public class MyWindow extends JFrame {
 	
 	private void addCells(JPanel gridContainer) {
 		
+		MyCell[][] cellMatrix = new MyCell[CELLS.x][CELLS.y];	// Rows, Columns
+		
 		for(int r = 0; r < CELLS.x; r++) {
 			for(int c = 0; c < CELLS.y; c++) {
 				MyCell cell = new MyCell();
@@ -60,6 +61,7 @@ public class MyWindow extends JFrame {
 			}
 		}
 		add(gridContainer, BorderLayout.CENTER);
+		MazeSolver.setMatrix(cellMatrix);
 	}
 	
 	private void loadWindow() {
