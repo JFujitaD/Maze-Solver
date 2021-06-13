@@ -24,4 +24,9 @@ public class MyCell extends JPanel {
 		isWall = true;
 		setBackground(WALL_BACKGROUND);
 	}
+	
+	public void changeToPath() {
+		isWall = false;
+		setBackground(DEFAULT_BACKGROUND);
+	}
 }

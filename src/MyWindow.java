@@ -12,13 +12,9 @@ public class MyWindow extends JFrame {
 	private static final Color GRID_BACKGROUND = Color.BLACK;
 	private static final Color INFO_BACKGROUND = Color.GRAY;
 	
-	private static JPanel gridContainer = new JPanel();
-	private static JPanel infoContainer = new JPanel();
-	
 	public MyWindow() {
 		
 		applyGrid();
-		addCells();
 		addInfoPanel();
 		
 		loadWindow();
@@ -29,6 +25,7 @@ public class MyWindow extends JFrame {
 		infoLabel.setText(INFO);
 		infoLabel.setFont(FONT);
 		
+		JPanel infoContainer = new JPanel();
 		infoContainer.setBackground(INFO_BACKGROUND);
 		infoContainer.add(infoLabel);
 		
@@ -38,11 +35,15 @@ public class MyWindow extends JFrame {
 	private void applyGrid() {
 		
 		GridLayout gridLayout = new GridLayout(CELLS.x, CELLS.y, GAPS.x, GAPS.y);
+		
+		JPanel gridContainer = new JPanel();
 		gridContainer.setBackground(GRID_BACKGROUND);
 		gridContainer.setLayout(gridLayout);
+		
+		addCells(gridContainer);
 	}
 	
-	private void addCells() {
+	private void addCells(JPanel gridContainer) {
 		
 		for(int r = 0; r < CELLS.x; r++) {
 			for(int c = 0; c < CELLS.y; c++) {

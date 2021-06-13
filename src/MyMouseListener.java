@@ -5,8 +5,13 @@ public class MyMouseListener implements MouseListener{
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
+		
 		MyCell cell = (MyCell)arg0.getComponent();
-		cell.changeToWall();
+		
+		if(arg0.getButton() == MouseEvent.BUTTON1)
+			cell.changeToWall();
+		else if(arg0.getButton() == MouseEvent.BUTTON3)
+			cell.changeToPath();
 	}
 
 	@Override
