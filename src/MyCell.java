@@ -24,6 +24,11 @@ public class MyCell extends JPanel {
 		index = new Point(row, column);
 	}
 	
+	public void reset() {
+		type = CellType.WALL;
+		changeToPath();
+	}
+	
 	public boolean isWall() {
 		if(type == CellType.WALL)
 			return true;

@@ -4,17 +4,30 @@ import java.awt.event.MouseListener;
 public class MyMouseListener implements MouseListener{
 	
 	@Override
-	public void mouseClicked(MouseEvent arg0) {}
+	public void mouseClicked(MouseEvent arg0) {
+		MyCell cell = (MyCell)arg0.getComponent();
+		
+		if(MyWindow.startSelectMode) {
+			MyWindow.startSelectMode = false;
+			MazeSolver.setStartCell(cell.index.x, cell.index.y);
+		}
+		else if(MyWindow.goalSelectMode) {
+			MyWindow.goalSelectMode = false;
+			MazeSolver.setEndCell(cell.index.x, cell.index.y);
+		}
+	}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		MyCell cell = (MyCell)arg0.getComponent();
-		
-		if(MyWindow.leftClickDown) {
-			cell.changeToWall();
-		}
-		else if(MyWindow.rightClickDown) {
-			cell.changeToPath();
+		if(!MyWindow.startSelectMode && !MyWindow.goalSelectMode) {
+			MyCell cell = (MyCell)arg0.getComponent();
+			
+			if(MyWindow.leftClickDown) {
+				cell.changeToWall();
+			}
+			else if(MyWindow.rightClickDown) {
+				cell.changeToPath();
+			}
 		}
 	}
 
@@ -23,15 +36,17 @@ public class MyMouseListener implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		MyCell cell = (MyCell)arg0.getComponent();
-		
-		if(arg0.getButton() == MouseEvent.BUTTON1) {
-			MyWindow.leftClickDown = true;
-			cell.changeToWall();
-		}
-		else if(arg0.getButton() == MouseEvent.BUTTON3) {
-			MyWindow.rightClickDown = true;
-			cell.changeToPath();
+		if(!MyWindow.startSelectMode && !MyWindow.goalSelectMode) {
+			MyCell cell = (MyCell)arg0.getComponent();
+			
+			if(arg0.getButton() == MouseEvent.BUTTON1) {
+				MyWindow.leftClickDown = true;
+				cell.changeToWall();
+			}
+			else if(arg0.getButton() == MouseEvent.BUTTON3) {
+				MyWindow.rightClickDown = true;
+				cell.changeToPath();
+			}
 		}
 	}
 

@@ -8,9 +8,10 @@ public class MyWindow extends JFrame {
 	
 	private static final String TITLE = "Maze Solver";
 	private static final String INFO = "Press SOLVE when ready";
-	private static final Font FONT = new Font("Serif", Font.BOLD, 64);
+	private static final Font FONT1 = new Font("Serif", Font.BOLD, 64);
+	private static final Font FONT2 = new Font("Serif", Font.PLAIN, 32);
 	private static final Dimension DIMENSION = new Dimension(1500, 1500);
-	private static final Point CELLS = new Point(25, 20);	// Rows, Columns
+	private static final Point CELLS = new Point(25, 25);	// Rows, Columns
 	private static final Point GAPS = new Point(5, 5);
 	private static final Color GRID_BACKGROUND = Color.BLACK;
 	private static final Color INFO_BACKGROUND = Color.GRAY;
@@ -19,22 +20,19 @@ public class MyWindow extends JFrame {
 	public static JLabel infoLabel = new JLabel(INFO);
 	public static boolean leftClickDown = false;
 	public static boolean rightClickDown = false;
+	public static boolean startSelectMode = false;
+	public static boolean goalSelectMode = false;
 	
 	public MyWindow() {
 		loadGrid();
 		addInfoPanel();
 		addButtonPanel();
 		
-		// Testing Matrix
-		MazeSolver.setStartCell(2, 4);
-		MazeSolver.setEndCell(24, 19);
-		// Testing Matrix
-		
 		loadWindow();
 	}
 	
 	private void addInfoPanel() {
-		infoLabel.setFont(FONT);
+		infoLabel.setFont(FONT1);
 		
 		JPanel infoContainer = new JPanel();
 		infoContainer.setBackground(INFO_BACKGROUND);
@@ -44,12 +42,31 @@ public class MyWindow extends JFrame {
 	}
 	
 	private void addButtonPanel() {	
+		MyActionListener actionListener = new MyActionListener();
+		GridLayout gridLayout = new GridLayout(1, 4);	// Rows, Columns
+		
+		JButton setStartButton = new JButton("Select Start");
+		setStartButton.setFont(FONT2);
+		setStartButton.addActionListener(actionListener);
+		
+		JButton setGoalButton = new JButton("Select Goal");
+		setGoalButton.setFont(FONT2);
+		setGoalButton.addActionListener(actionListener);
+		
 		JButton solveButton = new JButton("Solve");
-		solveButton.setFont(FONT);
-		solveButton.addActionListener(new MyActionListener());
+		solveButton.setFont(FONT2);
+		solveButton.addActionListener(actionListener);
+		
+		JButton resetButton = new JButton("Reset");
+		resetButton.setFont(FONT2);
+		resetButton.addActionListener(actionListener);
 		
 		JPanel buttonContainer = new JPanel();
 		buttonContainer.setBackground(BUTTON_BACKGROUND);
+		buttonContainer.setLayout(gridLayout);
+		buttonContainer.add(setStartButton);
+		buttonContainer.add(setGoalButton);
+		buttonContainer.add(resetButton);
 		buttonContainer.add(solveButton);
 		
 		add(buttonContainer, BorderLayout.SOUTH);

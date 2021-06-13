@@ -13,6 +13,17 @@ public abstract class MazeSolver {
 		BREADTH_FIRST, DEPTH_FIRST
 	}
 	
+	public static void reset() {
+		startPoint = null;
+		endPoint = null;
+		
+		for(int r = 0; r < rows; r++) {
+			for(int c = 0; c < cols; c++) {
+				cellMatrix[r][c].reset();
+			}
+		}
+	}
+	
 	public static void setMatrix(MyCell[][] matrix) {
 		cellMatrix = matrix;
 		rows = cellMatrix.length;
@@ -25,7 +36,7 @@ public abstract class MazeSolver {
 			startPoint = new Point(row, column);
 		}
 		else {
-			cellMatrix[startPoint.x][startPoint.y].changeToPath();
+			cellMatrix[startPoint.x][startPoint.y].reset();
 			cellMatrix[row][column].changeToStart();
 			startPoint = new Point(row, column);
 		}
@@ -37,7 +48,7 @@ public abstract class MazeSolver {
 			endPoint = new Point(column, row);
 		}
 		else {
-			cellMatrix[endPoint.x][endPoint.y].changeToPath();
+			cellMatrix[endPoint.x][endPoint.y].reset();
 			cellMatrix[row][column].changeToEnd();
 			endPoint = new Point(row, column);
 		}
