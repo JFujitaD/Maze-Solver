@@ -9,11 +9,12 @@ public class MyWindow extends JFrame {
 	private static final Font FONT1 = new Font("Serif", Font.BOLD, 64);
 	private static final Font FONT2 = new Font("Serif", Font.PLAIN, 32);
 	private static final Dimension DIMENSION = new Dimension(1500, 1500);
-	private static final Point CELLS = new Point(50, 50);	// Rows, Columns
+	private static final Point CELLS = new Point(10, 10);	// Rows, Columns
 	private static final Point GAPS = new Point(5, 5);
 	private static final Color GRID_BACKGROUND = Color.BLACK;
 	private static final Color INFO_BACKGROUND = Color.GRAY;
 	private static final Color BUTTON_BACKGROUND = Color.GRAY;
+	private static final MyButtonActionListener BUTTON_LISTENER = new MyButtonActionListener();
 	
 	public static JLabel infoLabel = new JLabel(INFO);
 	public static boolean leftClickDown = false;
@@ -25,51 +26,9 @@ public class MyWindow extends JFrame {
 		loadGrid();
 		addInfoPanel();
 		addButtonPanel();
+		addMenu();
 		
 		loadWindow();
-	}
-	
-	private void addInfoPanel() {
-		infoLabel.setFont(FONT1);
-		
-		JPanel infoContainer = new JPanel();
-		infoContainer.setBackground(INFO_BACKGROUND);
-		infoContainer.add(infoLabel);
-		
-		add(infoContainer, BorderLayout.NORTH);
-	}
-	
-	private void addButtonPanel() {	
-		MyActionListener actionListener = new MyActionListener();
-		GridLayout gridLayout = new GridLayout(1, 4);	// Rows, Columns
-		
-		JButton setStartButton = new JButton("Select Start");
-		setStartButton.setFont(FONT2);
-		setStartButton.setBackground(MyCell.START_BACKGROUND);
-		setStartButton.addActionListener(actionListener);
-		
-		JButton setGoalButton = new JButton("Select Goal");
-		setGoalButton.setFont(FONT2);
-		setGoalButton.setBackground(MyCell.END_BACKGROUND);
-		setGoalButton.addActionListener(actionListener);
-		
-		JButton solveButton = new JButton("Solve");
-		solveButton.setFont(FONT2);
-		solveButton.addActionListener(actionListener);
-		
-		JButton resetButton = new JButton("Reset");
-		resetButton.setFont(FONT2);
-		resetButton.addActionListener(actionListener);
-		
-		JPanel buttonContainer = new JPanel();
-		buttonContainer.setBackground(BUTTON_BACKGROUND);
-		buttonContainer.setLayout(gridLayout);
-		buttonContainer.add(setStartButton);
-		buttonContainer.add(setGoalButton);
-		buttonContainer.add(resetButton);
-		buttonContainer.add(solveButton);
-		
-		add(buttonContainer, BorderLayout.SOUTH);
 	}
 	
 	private void loadGrid() {
@@ -96,12 +55,68 @@ public class MyWindow extends JFrame {
 		MazeSolver.setMatrix(cellMatrix);
 	}
 	
+	private void addInfoPanel() {
+		infoLabel.setFont(FONT1);
+		
+		JPanel infoContainer = new JPanel();
+		infoContainer.setBackground(INFO_BACKGROUND);
+		infoContainer.add(infoLabel);
+		
+		add(infoContainer, BorderLayout.NORTH);
+	}
+	
 	private void loadWindow() {
 		setTitle(TITLE);
 		setSize(DIMENSION);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 		setResizable(false);
 		setVisible(true);
+	}
+	
+	private void addButtonPanel() {	
+		GridLayout gridLayout = new GridLayout(1, 4);	// Rows, Columns
+		
+		JButton setStartButton = new JButton("Select Start");
+		setStartButton.setFont(FONT2);
+		setStartButton.setBackground(MyCell.START_BACKGROUND);
+		setStartButton.addActionListener(BUTTON_LISTENER);
+		
+		JButton setGoalButton = new JButton("Select Goal");
+		setGoalButton.setFont(FONT2);
+		setGoalButton.setBackground(MyCell.END_BACKGROUND);
+		setGoalButton.addActionListener(BUTTON_LISTENER);
+		
+		JButton solveButton = new JButton("Solve");
+		solveButton.setFont(FONT2);
+		solveButton.addActionListener(BUTTON_LISTENER);
+		
+		JButton resetButton = new JButton("Reset");
+		resetButton.setFont(FONT2);
+		resetButton.addActionListener(BUTTON_LISTENER);
+		
+		JPanel buttonContainer = new JPanel();
+		buttonContainer.setBackground(BUTTON_BACKGROUND);
+		buttonContainer.setLayout(gridLayout);
+		buttonContainer.add(setStartButton);
+		buttonContainer.add(setGoalButton);
+		buttonContainer.add(resetButton);
+		buttonContainer.add(solveButton);
+		
+		add(buttonContainer, BorderLayout.SOUTH);
+	}
+	
+	private void addMenu() {
+		JMenuBar menuBar = new JMenuBar();
+		JMenu menu = new JMenu("Actions");
+		menu.setFont(FONT2);
+		
+		JMenuItem randomWalls = new JMenuItem("Random Walls");
+		randomWalls.setFont(FONT2);
+		
+		menu.add(randomWalls);
+		menuBar.add(menu);
+		
+		setJMenuBar(menuBar);
 	}
 	
 	public static void main(String[] args) {
