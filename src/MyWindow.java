@@ -12,10 +12,18 @@ public class MyWindow extends JFrame {
 	private static final Color GRID_BACKGROUND = Color.BLACK;
 	private static final Color INFO_BACKGROUND = Color.GRAY;
 	
+	private static MyCell[][] cellMatrix = new MyCell[CELLS.x][CELLS.y];	// Rows, Columns
+	private static Point startCell = new Point(0, 2);
+	private static Point endCell = new Point(10, 19);
+	
 	public MyWindow() {
 		
 		applyGrid();
 		addInfoPanel();
+		
+		// Testing Matrix
+		
+		// Testing Matrix
 		
 		loadWindow();
 	}
@@ -47,7 +55,9 @@ public class MyWindow extends JFrame {
 		
 		for(int r = 0; r < CELLS.x; r++) {
 			for(int c = 0; c < CELLS.y; c++) {
-				gridContainer.add(new MyCell());
+				MyCell cell = new MyCell();
+				gridContainer.add(cell);
+				cellMatrix[r][c] = cell;
 			}
 		}
 		add(gridContainer, BorderLayout.CENTER);
