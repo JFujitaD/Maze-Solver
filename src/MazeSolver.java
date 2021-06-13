@@ -71,35 +71,35 @@ public abstract class MazeSolver {
 		return false;		
 	}
 	private static boolean depthFirstSearch() {
-		// Used to keep track of cells that need to be visited.
-		ArrayList<MyCell> visited = new ArrayList<>();
-		ArrayList<MyCell> neighbors;
 		Stack<MyCell> stack = new Stack<>();
+		ArrayList<MyCell> neighbors;
+		MyCell cell = cellMatrix[startPoint.x][startPoint.y];
+		cell.visitCell();
+		stack.push(cell);
 		
-		// Starting point
-		MyCell start = cellMatrix[startPoint.x][startPoint.y];
-		stack.push(start);
-		
-		// Continue until stack is empty
 		while(!stack.isEmpty()) {
-			MyCell unvisitedCell = stack.pop();
+			// Get the neighbors of the cell
+			neighbors = getNeighbors(cell);
 			
-			// If the given cell is the end, break.
-			if(unvisitedCell.isEnd()) {
-				return true;
-			}
-			
-			// Mark as visited
-			unvisitedCell.visitCell();
-			visited.add(unvisitedCell);
-			
-			// Get adjacent cells and add them to stack if they haven't been visited
-			neighbors = getNeighbors(unvisitedCell);
-			for(MyCell neighbor : neighbors) {
-				if(!visited.contains(neighbor)) {
-					stack.push(neighbor);
+			// While the cell has neighbors
+			while(!neighbors.isEmpty()) {
+				// Add first valid neighbor to stack
+				for(MyCell neighbor : neighbors) {
+					// If they haven't been visited, push them on the stack
+					if(!neighbor.isVisited()) {
+						cell = neighbor;
+						// If cell is the goal, return true
+						if(cell.isEnd())
+							return true;
+						
+						cell.visitCell();
+						stack.push(cell);
+						break;
+					}
 				}
+				neighbors = getNeighbors(cell);
 			}
+			cell = stack.pop();
 		}
 		
 		return false;
@@ -112,12 +112,6 @@ public abstract class MazeSolver {
 		int r = cell.index.x;
 		int c = cell.index.y;
 		
-		// North
-		if(r - 1 >= 0 ) {
-			neighbor = cellMatrix[r - 1][c];
-			if(!neighbor.isWall())
-				neighbors.add(neighbor);
-		}	
 		// East
 		if(c + 1 < cols) {
 			neighbor = cellMatrix[r][c + 1];
@@ -130,6 +124,12 @@ public abstract class MazeSolver {
 			if(!neighbor.isWall())
 				neighbors.add(neighbor);
 		}
+		// North
+		if(r - 1 >= 0 ) {
+			neighbor = cellMatrix[r - 1][c];
+			if(!neighbor.isWall())
+				neighbors.add(neighbor);
+		}	
 		// West
 		if(c - 1 >= 0) {
 			neighbor = cellMatrix[r][c - 1];

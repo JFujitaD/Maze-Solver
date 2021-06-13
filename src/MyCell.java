@@ -35,6 +35,12 @@ public class MyCell extends JPanel {
 		return false;
 	}
 	
+	public boolean isVisited() {
+		if(type == CellType.VISITED || type == CellType.START)
+			return true;
+		return false;
+	}
+	
 	public boolean isEnd() {
 		if(type == CellType.END)
 			return true;
