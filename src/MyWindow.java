@@ -16,7 +16,6 @@ public class MyWindow extends JFrame {
 	public static boolean rightClickDown = false;
 	
 	public MyWindow() {
-		
 		loadGrid();
 		addInfoPanel();
 		
@@ -41,7 +40,6 @@ public class MyWindow extends JFrame {
 	}
 	
 	private void loadGrid() {
-		
 		GridLayout gridLayout = new GridLayout(CELLS.x, CELLS.y, GAPS.x, GAPS.y);
 		
 		JPanel gridContainer = new JPanel();
@@ -52,7 +50,6 @@ public class MyWindow extends JFrame {
 	}
 	
 	private void addCells(JPanel gridContainer) {
-		
 		MyCell[][] cellMatrix = new MyCell[CELLS.x][CELLS.y];	// Rows, Columns
 		
 		for(int r = 0; r < CELLS.x; r++) {
@@ -67,7 +64,6 @@ public class MyWindow extends JFrame {
 	}
 	
 	private void loadWindow() {
-		
 		setTitle(TITLE);
 		setSize(DIMENSION);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -76,7 +72,6 @@ public class MyWindow extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		
 		new MyWindow();
 	}
 

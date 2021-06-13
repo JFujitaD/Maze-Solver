@@ -17,7 +17,6 @@ public class MyCell extends JPanel {
 	}
 	
 	public MyCell() {
-		
 		setBackground(DEFAULT_BACKGROUND);
 		addMouseListener(LISTENER);
 	}
@@ -27,13 +26,17 @@ public class MyCell extends JPanel {
 	}
 	
 	public void changeToWall() {
-		type = CellType.WALL;
-		setBackground(WALL_BACKGROUND);
+		if(type == CellType.PATH) {
+			type = CellType.WALL;
+			setBackground(WALL_BACKGROUND);
+		}
 	}
 	
 	public void changeToPath() {
-		type = CellType.PATH;
-		setBackground(DEFAULT_BACKGROUND);
+		if(type == CellType.WALL) {
+			type = CellType.PATH;
+			setBackground(DEFAULT_BACKGROUND);
+		}
 	}
 	
 	public void changeToStart() {

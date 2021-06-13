@@ -10,7 +10,6 @@ public class MyMouseListener implements MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
-		
 		MyCell cell = (MyCell)arg0.getComponent();
 		
 		if(MyWindow.leftClickDown) {
@@ -26,7 +25,6 @@ public class MyMouseListener implements MouseListener{
 
 	@Override
 	public void mousePressed(MouseEvent arg0) {
-		
 		MyCell cell = (MyCell)arg0.getComponent();
 		
 		if(arg0.getButton() == MouseEvent.BUTTON1)
@@ -38,7 +36,6 @@ public class MyMouseListener implements MouseListener{
 
 	@Override
 	public void mouseReleased(MouseEvent arg0) {
-		
 		MyWindow.leftClickDown = false;
 		MyWindow.rightClickDown = false;
 	}
