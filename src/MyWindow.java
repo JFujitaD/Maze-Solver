@@ -12,6 +12,9 @@ public class MyWindow extends JFrame {
 	private static final Color GRID_BACKGROUND = Color.BLACK;
 	private static final Color INFO_BACKGROUND = Color.GRAY;
 	
+	public static boolean leftClickDown = false;
+	public static boolean rightClickDown = false;
+	
 	public MyWindow() {
 		
 		loadGrid();
