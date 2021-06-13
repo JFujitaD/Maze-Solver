@@ -46,17 +46,7 @@ public class MyWindow extends JFrame {
 	private void addButtonPanel() {	
 		JButton solveButton = new JButton("Solve");
 		solveButton.setFont(FONT);
-		solveButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				boolean solvable = MazeSolver.solve(MazeSolver.SearchAlgorithm.DEPTH_FIRST);
-				
-				if(solvable)
-					infoLabel.setText("Maze has been solved");
-				else
-					infoLabel.setText("Maze is unsolvable");
-			}
-		});
+		solveButton.addActionListener(new MyActionListener());
 		
 		JPanel buttonContainer = new JPanel();
 		buttonContainer.setBackground(BUTTON_BACKGROUND);
