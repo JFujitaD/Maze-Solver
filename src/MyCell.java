@@ -13,7 +13,7 @@ public class MyCell extends JPanel {
 	public CellType type = CellType.PATH;
 	
 	public enum CellType {
-		START, PATH, WALL, END
+		START, PATH, WALL, END, VISITED
 	}
 	
 	public MyCell() {
@@ -22,6 +22,7 @@ public class MyCell extends JPanel {
 	}
 	
 	public void visitCell() {
+		type = CellType.VISITED;
 		setBackground(VISITED_BACKGROUND);
 	}
 	
