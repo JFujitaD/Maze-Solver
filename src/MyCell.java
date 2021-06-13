@@ -6,8 +6,8 @@ public class MyCell extends JPanel {
 	private static final Color DEFAULT_BACKGROUND = Color.WHITE;
 	private static final Color VISITED_BACKGROUND = Color.BLUE;
 	private static final Color WALL_BACKGROUND = Color.BLACK;
-	private static final Color START_BACKGROUND = Color.GREEN;
-	private static final Color END_BACKGROUND = Color.RED;
+	public static final Color START_BACKGROUND = Color.GREEN;
+	public static final Color END_BACKGROUND = Color.RED;
 	private static final MyMouseListener LISTENER = new MyMouseListener();
 	
 	public CellType type = CellType.PATH;

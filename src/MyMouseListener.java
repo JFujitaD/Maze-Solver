@@ -8,10 +8,12 @@ public class MyMouseListener implements MouseListener{
 		MyCell cell = (MyCell)arg0.getComponent();
 		
 		if(MyWindow.startSelectMode) {
+			MyWindow.infoLabel.setText(MyWindow.INFO);
 			MyWindow.startSelectMode = false;
 			MazeSolver.setStartCell(cell.index.x, cell.index.y);
 		}
 		else if(MyWindow.goalSelectMode) {
+			MyWindow.infoLabel.setText(MyWindow.INFO);
 			MyWindow.goalSelectMode = false;
 			MazeSolver.setEndCell(cell.index.x, cell.index.y);
 		}

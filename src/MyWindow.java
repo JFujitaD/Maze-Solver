@@ -7,7 +7,7 @@ import javax.swing.*;
 public class MyWindow extends JFrame {
 	
 	private static final String TITLE = "Maze Solver";
-	private static final String INFO = "Press SOLVE when ready";
+	public static final String INFO = "Press SOLVE when ready";
 	private static final Font FONT1 = new Font("Serif", Font.BOLD, 64);
 	private static final Font FONT2 = new Font("Serif", Font.PLAIN, 32);
 	private static final Dimension DIMENSION = new Dimension(1500, 1500);
@@ -47,10 +47,12 @@ public class MyWindow extends JFrame {
 		
 		JButton setStartButton = new JButton("Select Start");
 		setStartButton.setFont(FONT2);
+		setStartButton.setBackground(MyCell.START_BACKGROUND);
 		setStartButton.addActionListener(actionListener);
 		
 		JButton setGoalButton = new JButton("Select Goal");
 		setGoalButton.setFont(FONT2);
+		setGoalButton.setBackground(MyCell.END_BACKGROUND);
 		setGoalButton.addActionListener(actionListener);
 		
 		JButton solveButton = new JButton("Solve");

@@ -45,7 +45,7 @@ public abstract class MazeSolver {
 	public static void setEndCell(int row, int column) {
 		if(endPoint == null) {
 			cellMatrix[row][column].changeToEnd();
-			endPoint = new Point(column, row);
+			endPoint = new Point(row, column);
 		}
 		else {
 			cellMatrix[endPoint.x][endPoint.y].reset();
