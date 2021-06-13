@@ -47,27 +47,19 @@ public abstract class MazeSolver {
 		if(startPoint != null && endPoint != null) {
 			switch(algorithm) {
 				case BREADTH_FIRST:
-					breadthFirstSearch();
-					break;
+					return breadthFirstSearch();
 				case DEPTH_FIRST:
-					depthFirstSearch();
+					return depthFirstSearch();
 			}
 			return true;
 		}
 		return false;
 	}
 	
-	private static void breadthFirstSearch() {
-		
+	private static boolean breadthFirstSearch() {
+		return false;		
 	}
-	private static void depthFirstSearch() {
-		/*
-		    1. Start by putting any one of the graph's vertices on top of a stack.
-		    2. Take the top item of the stack and add it to the visited list.
-		    3. Create a list of that vertex's adjacent nodes. Add the ones which aren't in the visited list to the top of the stack.
-		    4. Keep repeating steps 2 and 3 until the stack is empty.
-	    */
-
+	private static boolean depthFirstSearch() {
 		// Used to keep track of cells that need to be visited.
 		ArrayList<MyCell> visited = new ArrayList<>();
 		ArrayList<MyCell> neighbors;
@@ -80,9 +72,13 @@ public abstract class MazeSolver {
 		// Continue until stack is empty
 		while(!stack.isEmpty()) {
 			MyCell unvisitedCell = stack.pop();
+			
 			// If the given cell is the end, break.
-			if(unvisitedCell.isEnd())
-				break;
+			if(unvisitedCell.isEnd()) {
+				return true;
+			}
+			
+			// Mark as visited
 			unvisitedCell.visitCell();
 			visited.add(unvisitedCell);
 			
@@ -94,6 +90,8 @@ public abstract class MazeSolver {
 				}
 			}
 		}
+		
+		return false;
 	}
 	
 	private static ArrayList<MyCell> getNeighbors(MyCell cell){

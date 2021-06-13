@@ -4,9 +4,7 @@ import java.awt.event.MouseListener;
 public class MyMouseListener implements MouseListener{
 	
 	@Override
-	public void mouseClicked(MouseEvent arg0) {
-		
-	}
+	public void mouseClicked(MouseEvent arg0) {}
 
 	@Override
 	public void mouseEntered(MouseEvent arg0) {
@@ -27,11 +25,14 @@ public class MyMouseListener implements MouseListener{
 	public void mousePressed(MouseEvent arg0) {
 		MyCell cell = (MyCell)arg0.getComponent();
 		
-		if(arg0.getButton() == MouseEvent.BUTTON1)
+		if(arg0.getButton() == MouseEvent.BUTTON1) {
 			MyWindow.leftClickDown = true;
-		else if(arg0.getButton() == MouseEvent.BUTTON3)
+			cell.changeToWall();
+		}
+		else if(arg0.getButton() == MouseEvent.BUTTON3) {
 			MyWindow.rightClickDown = true;
-			
+			cell.changeToPath();
+		}
 	}
 
 	@Override

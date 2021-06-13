@@ -7,7 +7,7 @@ import javax.swing.*;
 public class MyWindow extends JFrame {
 	
 	private static final String TITLE = "Maze Solver";
-	private static final String INFO = "Information Panel";
+	private static final String INFO = "Press SOLVE when ready";
 	private static final Font FONT = new Font("Serif", Font.BOLD, 64);
 	private static final Dimension DIMENSION = new Dimension(1500, 1500);
 	private static final Point CELLS = new Point(25, 20);	// Rows, Columns
@@ -16,6 +16,7 @@ public class MyWindow extends JFrame {
 	private static final Color INFO_BACKGROUND = Color.GRAY;
 	private static final Color BUTTON_BACKGROUND = Color.GRAY;
 	
+	public static JLabel infoLabel = new JLabel(INFO);
 	public static boolean leftClickDown = false;
 	public static boolean rightClickDown = false;
 	
@@ -33,8 +34,6 @@ public class MyWindow extends JFrame {
 	}
 	
 	private void addInfoPanel() {
-		JLabel infoLabel = new JLabel();
-		infoLabel.setText(INFO);
 		infoLabel.setFont(FONT);
 		
 		JPanel infoContainer = new JPanel();
@@ -50,7 +49,12 @@ public class MyWindow extends JFrame {
 		solveButton.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
-				MazeSolver.solve(MazeSolver.SearchAlgorithm.DEPTH_FIRST);				
+				boolean solvable = MazeSolver.solve(MazeSolver.SearchAlgorithm.DEPTH_FIRST);
+				
+				if(solvable)
+					infoLabel.setText("Maze has been solved");
+				else
+					infoLabel.setText("Maze is unsolvable");
 			}
 		});
 		
