@@ -74,7 +74,6 @@ public abstract class MazeSolver {
 		Stack<MyCell> stack = new Stack<>();
 		ArrayList<MyCell> neighbors;
 		MyCell cell = cellMatrix[startPoint.x][startPoint.y];
-		cell.visitCell();
 		stack.push(cell);
 		
 		while(!stack.isEmpty()) {
@@ -85,17 +84,14 @@ public abstract class MazeSolver {
 			while(!neighbors.isEmpty()) {
 				// Add first valid neighbor to stack
 				for(MyCell neighbor : neighbors) {
-					// If they haven't been visited, push them on the stack
-					if(!neighbor.isVisited()) {
-						cell = neighbor;
-						// If cell is the goal, return true
-						if(cell.isEnd())
-							return true;
-						
-						cell.visitCell();
-						stack.push(cell);
-						break;
-					}
+					// If cell is the goal, return true
+					if(neighbor.isEnd())
+						return true;
+					
+					cell = neighbor;
+					cell.visitCell();
+					stack.push(cell);
+					break;
 				}
 				neighbors = getNeighbors(cell);
 			}
@@ -115,25 +111,25 @@ public abstract class MazeSolver {
 		// East
 		if(c + 1 < cols) {
 			neighbor = cellMatrix[r][c + 1];
-			if(!neighbor.isWall())
+			if(!neighbor.isWall() && !neighbor.isVisited())
 				neighbors.add(neighbor);
 		}
 		// South
 		if(r + 1 < rows) {
 			neighbor = cellMatrix[r + 1][c];
-			if(!neighbor.isWall())
+			if(!neighbor.isWall() && !neighbor.isVisited())
 				neighbors.add(neighbor);
 		}
 		// North
 		if(r - 1 >= 0 ) {
 			neighbor = cellMatrix[r - 1][c];
-			if(!neighbor.isWall())
+			if(!neighbor.isWall() && !neighbor.isVisited())
 				neighbors.add(neighbor);
 		}	
 		// West
 		if(c - 1 >= 0) {
 			neighbor = cellMatrix[r][c - 1];
-			if(!neighbor.isWall())
+			if(!neighbor.isWall() && !neighbor.isVisited())
 				neighbors.add(neighbor);
 		}
 		
