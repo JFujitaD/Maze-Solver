@@ -1,4 +1,7 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class MyWindow extends JFrame {
@@ -11,6 +14,7 @@ public class MyWindow extends JFrame {
 	private static final Point GAPS = new Point(5, 5);
 	private static final Color GRID_BACKGROUND = Color.BLACK;
 	private static final Color INFO_BACKGROUND = Color.GRAY;
+	private static final Color BUTTON_BACKGROUND = Color.GRAY;
 	
 	public static boolean leftClickDown = false;
 	public static boolean rightClickDown = false;
@@ -23,7 +27,6 @@ public class MyWindow extends JFrame {
 		// Testing Matrix
 		MazeSolver.setStartCell(2, 4);
 		MazeSolver.setEndCell(24, 19);
-		MazeSolver.solve(MazeSolver.SearchAlgorithm.DEPTH_FIRST);
 		// Testing Matrix
 		
 		loadWindow();
@@ -41,8 +44,21 @@ public class MyWindow extends JFrame {
 		add(infoContainer, BorderLayout.NORTH);
 	}
 	
-	private void addButtonPanel() {
+	private void addButtonPanel() {	
+		JButton solveButton = new JButton("Solve");
+		solveButton.setFont(FONT);
+		solveButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				MazeSolver.solve(MazeSolver.SearchAlgorithm.DEPTH_FIRST);				
+			}
+		});
 		
+		JPanel buttonContainer = new JPanel();
+		buttonContainer.setBackground(BUTTON_BACKGROUND);
+		buttonContainer.add(solveButton);
+		
+		add(buttonContainer, BorderLayout.SOUTH);
 	}
 	
 	private void loadGrid() {
