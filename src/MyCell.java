@@ -30,21 +30,15 @@ public class MyCell extends JPanel {
 	}
 	
 	public boolean isWall() {
-		if(type == CellType.WALL)
-			return true;
-		return false;
+		return type == CellType.WALL;
 	}
 	
 	public boolean isVisited() {
-		if(type == CellType.VISITED || type == CellType.START)
-			return true;
-		return false;
+		return type == CellType.VISITED || type == CellType.START;
 	}
 	
 	public boolean isEnd() {
-		if(type == CellType.END)
-			return true;
-		return false;
+		return type == CellType.END;
 	}
 	
 	public void visitCell() {
