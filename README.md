@@ -8,7 +8,10 @@ This is a visual representation of how mazes can be traversed using various path
 4. Click "Solve" to have the maze solved.
 
 ## Screenshots
-![Maze 1](/src/ms-maze1.png?raw=true)
+![Maze 1](/src/images/ms-maze1.png?raw=true)
+![Maze 1](/src/images/ms-solved1.png?raw=true)
+![Maze 2](/src/images/ms-maze2.png?raw=true)
+![Maze 2](/src/images/ms-solved2.png?raw=true)
 
 ## Additional Information
 - This is still in early stages. Only depth first search has been implemented.
