@@ -1,3 +1,4 @@
+import java.awt.Point;
 
 public abstract class MazeSolver {
 	
@@ -10,5 +11,15 @@ public abstract class MazeSolver {
 		cellMatrix = matrix;
 		rows = cellMatrix.length;
 		cols = cellMatrix[0].length;
+	}
+	
+	public static void setStartCell(int row, int column) {
+		
+		cellMatrix[row][column].changeToStart();
+	}
+	
+	public static void setEndCell(int row, int column) {
+		
+		cellMatrix[row][column].changeToEnd();		
 	}
 }

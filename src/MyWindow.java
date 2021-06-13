@@ -18,7 +18,8 @@ public class MyWindow extends JFrame {
 		addInfoPanel();
 		
 		// Testing Matrix
-		
+		MazeSolver.setStartCell(2, 4);
+		MazeSolver.setEndCell(24, 19);
 		// Testing Matrix
 		
 		loadWindow();
