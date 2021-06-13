@@ -10,10 +10,10 @@ public class MyCell extends JPanel {
 	public static final Color END_BACKGROUND = Color.RED;
 	private static final MyMouseListener LISTENER = new MyMouseListener();
 	
-	public CellType type = CellType.PATH;
+	private CellType type = CellType.PATH;
 	public Point index;
 	
-	public enum CellType {
+	private enum CellType {
 		START, PATH, WALL, END, VISITED
 	}
 	
