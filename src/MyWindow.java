@@ -18,10 +18,12 @@ public class MyWindow extends JFrame {
 	public MyWindow() {
 		loadGrid();
 		addInfoPanel();
+		addButtonPanel();
 		
 		// Testing Matrix
 		MazeSolver.setStartCell(2, 4);
 		MazeSolver.setEndCell(24, 19);
+		MazeSolver.solve(MazeSolver.SearchAlgorithm.DEPTH_FIRST);
 		// Testing Matrix
 		
 		loadWindow();
@@ -39,6 +41,10 @@ public class MyWindow extends JFrame {
 		add(infoContainer, BorderLayout.NORTH);
 	}
 	
+	private void addButtonPanel() {
+		
+	}
+	
 	private void loadGrid() {
 		GridLayout gridLayout = new GridLayout(CELLS.x, CELLS.y, GAPS.x, GAPS.y);
 		
@@ -54,7 +60,7 @@ public class MyWindow extends JFrame {
 		
 		for(int r = 0; r < CELLS.x; r++) {
 			for(int c = 0; c < CELLS.y; c++) {
-				MyCell cell = new MyCell();
+				MyCell cell = new MyCell(r, c);
 				gridContainer.add(cell);
 				cellMatrix[r][c] = cell;
 			}

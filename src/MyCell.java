@@ -11,19 +11,36 @@ public class MyCell extends JPanel {
 	private static final MyMouseListener LISTENER = new MyMouseListener();
 	
 	public CellType type = CellType.PATH;
+	public Point index;
 	
 	public enum CellType {
 		START, PATH, WALL, END, VISITED
 	}
 	
-	public MyCell() {
+	public MyCell(int row, int column) {
 		setBackground(DEFAULT_BACKGROUND);
 		addMouseListener(LISTENER);
+		
+		index = new Point(row, column);
+	}
+	
+	public boolean isWall() {
+		if(type == CellType.WALL)
+			return true;
+		return false;
+	}
+	
+	public boolean isEnd() {
+		if(type == CellType.END)
+			return true;
+		return false;
 	}
 	
 	public void visitCell() {
-		type = CellType.VISITED;
-		setBackground(VISITED_BACKGROUND);
+		if(type == CellType.PATH) {
+			type = CellType.VISITED;
+			setBackground(VISITED_BACKGROUND);
+		}	
 	}
 	
 	public void changeToWall() {
