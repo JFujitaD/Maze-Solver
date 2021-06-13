@@ -7,7 +7,7 @@ public class MyWindow extends JFrame {
 	private static final String INFO = "Information Panel";
 	private static final Font FONT = new Font("Serif", Font.BOLD, 64);
 	private static final Dimension DIMENSION = new Dimension(1500, 1500);
-	private static final Point CELLS = new Point(25, 25);	// Rows, Columns
+	private static final Point CELLS = new Point(20, 20);	// Rows, Columns
 	private static final Point GAPS = new Point(5, 5);
 	private static final Color GRID_BACKGROUND = Color.BLACK;
 	private static final Color INFO_BACKGROUND = Color.GRAY;
@@ -17,10 +17,9 @@ public class MyWindow extends JFrame {
 	
 	public MyWindow() {
 		
-		addInfoPanel();
-		
 		applyGrid();
 		addCells();
+		addInfoPanel();
 		
 		loadWindow();
 	}
@@ -29,6 +28,7 @@ public class MyWindow extends JFrame {
 		JLabel infoLabel = new JLabel();
 		infoLabel.setText(INFO);
 		infoLabel.setFont(FONT);
+		
 		infoContainer.setBackground(INFO_BACKGROUND);
 		infoContainer.add(infoLabel);
 		
