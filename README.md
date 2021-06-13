@@ -15,4 +15,4 @@ This is a visual representation of how mazes can be traversed using various path
 
 ## Additional Information
 - This is still in early stages. Only depth first search has been implemented.
-- The number of cells in configurable in MyWindow.java
+- The number of cells is configurable in MyWindow.java
