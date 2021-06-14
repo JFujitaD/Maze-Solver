@@ -86,7 +86,7 @@ public abstract class MazeSolver {
 		MyCell cell = cellMatrix[startPoint.x][startPoint.y];
 		queue.add(cell);
 		
-		while(!queue.isEmpty()) {
+		while(true) {
 			neighbors = getNeighbors(cell);
 			
 			for(MyCell neighbor : neighbors) {
@@ -95,6 +95,8 @@ public abstract class MazeSolver {
 				neighbor.visitCell();
 				queue.add(neighbor);
 			}
+			if(queue.isEmpty())
+				break;
 			cell = queue.remove();
 		}
 		
