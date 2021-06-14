@@ -19,6 +19,7 @@ public class MyWindow extends JFrame {
 	private static final MyMenuActionListener MENU_LISTENER = new MyMenuActionListener();
 	
 	public static JLabel infoLabel = new JLabel(INFO);
+	public static JComboBox<MazeSolver.SearchAlgorithm> comboBox = new JComboBox<>();
 	public static boolean leftClickDown = false;
 	public static boolean rightClickDown = false;
 	public static boolean startSelectMode = false;
@@ -76,7 +77,7 @@ public class MyWindow extends JFrame {
 	}
 	
 	private void addButtonPanel() {	
-		GridLayout gridLayout = new GridLayout(1, 4);	// Rows, Columns
+		GridLayout gridLayout = new GridLayout(3, 2);	// Rows, Columns
 		
 		JButton setStartButton = new JButton("Select Start");
 		setStartButton.setFont(FONT2);
@@ -96,6 +97,10 @@ public class MyWindow extends JFrame {
 		resetButton.setFont(FONT2);
 		resetButton.addActionListener(BUTTON_LISTENER);
 		
+		comboBox.setFont(FONT2);
+		comboBox.addItem(MazeSolver.SearchAlgorithm.BREADTH_FIRST);
+		comboBox.addItem(MazeSolver.SearchAlgorithm.DEPTH_FIRST);
+		
 		JPanel buttonContainer = new JPanel();
 		buttonContainer.setBackground(BUTTON_BACKGROUND);
 		buttonContainer.setLayout(gridLayout);
@@ -103,6 +108,7 @@ public class MyWindow extends JFrame {
 		buttonContainer.add(setGoalButton);
 		buttonContainer.add(resetButton);
 		buttonContainer.add(solveButton);
+		buttonContainer.add(comboBox);
 		
 		add(buttonContainer, BorderLayout.SOUTH);
 	}

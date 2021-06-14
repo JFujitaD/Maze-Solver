@@ -18,7 +18,7 @@ public class MyButtonActionListener implements ActionListener{
 				selectGoal();
 				break;
 			case "Solve":
-				solve();
+				solve((MazeSolver.SearchAlgorithm)MyWindow.comboBox.getSelectedItem());
 				break;
 			case "Reset":
 				reset();
@@ -38,8 +38,8 @@ public class MyButtonActionListener implements ActionListener{
 		MyWindow.startSelectMode = false;
 	}
 	
-	private void solve() {
-		boolean solvable = MazeSolver.solve(MazeSolver.SearchAlgorithm.DEPTH_FIRST);
+	private void solve(MazeSolver.SearchAlgorithm algorithm) {
+		boolean solvable = MazeSolver.solve(algorithm);
 		
 		if(solvable)
 			MyWindow.infoLabel.setText("Maze has been solved");
