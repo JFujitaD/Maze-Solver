@@ -8,6 +8,7 @@ public abstract class MazeSolver {
 	private static Point endPoint;
 	private static int rows;
 	private static int cols;
+	private static final float WALL_CHANCE = 0.4f;
 	
 	public enum SearchAlgorithm {
 		BREADTH_FIRST, DEPTH_FIRST
@@ -20,6 +21,18 @@ public abstract class MazeSolver {
 		for(int r = 0; r < rows; r++) {
 			for(int c = 0; c < cols; c++) {
 				cellMatrix[r][c].reset();
+			}
+		}
+	}
+	
+	public static void setRandomWalls() {
+		Random rand = new Random();
+		reset();
+		
+		for(int r = 0; r < rows; r++) {
+			for(int c = 0; c < cols; c++) {
+				if(rand.nextFloat() < WALL_CHANCE)
+					cellMatrix[r][c].changeToWall();
 			}
 		}
 	}

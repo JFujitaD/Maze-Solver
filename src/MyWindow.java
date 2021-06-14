@@ -14,7 +14,9 @@ public class MyWindow extends JFrame {
 	private static final Color GRID_BACKGROUND = Color.BLACK;
 	private static final Color INFO_BACKGROUND = Color.GRAY;
 	private static final Color BUTTON_BACKGROUND = Color.GRAY;
+	
 	private static final MyButtonActionListener BUTTON_LISTENER = new MyButtonActionListener();
+	private static final MyMenuActionListener MENU_LISTENER = new MyMenuActionListener();
 	
 	public static JLabel infoLabel = new JLabel(INFO);
 	public static boolean leftClickDown = false;
@@ -112,6 +114,7 @@ public class MyWindow extends JFrame {
 		
 		JMenuItem randomWalls = new JMenuItem("Random Walls");
 		randomWalls.setFont(FONT2);
+		randomWalls.addActionListener(MENU_LISTENER);
 		
 		menu.add(randomWalls);
 		menuBar.add(menu);

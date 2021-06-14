@@ -24,8 +24,6 @@ public class MyButtonActionListener implements ActionListener{
 				reset();
 				break;
 		}
-		
-		
 	}
 	
 	private void selectStart() {
