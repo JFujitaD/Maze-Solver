@@ -81,6 +81,23 @@ public abstract class MazeSolver {
 	}
 	
 	private static boolean breadthFirstSearch() {
+		Queue<MyCell> queue = new LinkedList<>();
+		ArrayList<MyCell> neighbors;
+		MyCell cell = cellMatrix[startPoint.x][startPoint.y];
+		queue.add(cell);
+		
+		while(!queue.isEmpty()) {
+			neighbors = getNeighbors(cell);
+			
+			for(MyCell neighbor : neighbors) {
+				if(neighbor.isEnd())
+					return true;
+				neighbor.visitCell();
+				queue.add(neighbor);
+			}
+			cell = queue.remove();
+		}
+		
 		return false;		
 	}
 	private static boolean depthFirstSearch() {
