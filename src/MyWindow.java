@@ -9,7 +9,7 @@ public class MyWindow extends JFrame {
 	private static final Font FONT1 = new Font("Serif", Font.BOLD, 64);
 	private static final Font FONT2 = new Font("Serif", Font.PLAIN, 32);
 	private static final Dimension DIMENSION = new Dimension(1500, 1500);
-	private static final Point CELLS = new Point(10, 10);	// Rows, Columns
+	private static final Point CELLS = new Point(50, 50);	// Rows, Columns
 	private static final Point GAPS = new Point(5, 5);
 	private static final Color GRID_BACKGROUND = Color.BLACK;
 	private static final Color INFO_BACKGROUND = Color.GRAY;
