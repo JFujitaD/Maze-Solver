@@ -14,5 +14,4 @@ This is a visual representation of how mazes can be traversed using various path
 ![Maze 2](/src/images/ms-solved2.png?raw=true)
 
 ## Additional Information
-- This is still in early stages. Only depth first search has been implemented.
 - The number of cells is configurable in MyWindow.java
